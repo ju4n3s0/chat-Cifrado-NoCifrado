@@ -20,8 +20,8 @@ async def encrypted_handler(websocket):
     encrypted_clients.add(websocket)
     try:
         async for message in websocket:
-            print("[ENCRYPTED]", message)
             for client in encrypted_clients:
+                print("[ENCRYPTED]", message)
                 if client != websocket:
                     await client.send(message)
     finally:
